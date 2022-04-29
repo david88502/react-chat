@@ -1,0 +1,30 @@
+p {
+    max-width: 500px;
+    margin-bottom: 12px;
+    line-height: 24px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    position: relative;
+    color: white;
+    text-align: center;
+  }
+  
+.chat-message {
+display: flex;
+align-items: center;
+}
+  
+  
+.sent {
+flex-direction: row-reverse;
+}
+
+.sent p {
+color: white;
+background: rgb(66,133,244);
+align-self: flex-end;
+}
+.received p {
+background: #e5e5ea;
+color: black;
+}
