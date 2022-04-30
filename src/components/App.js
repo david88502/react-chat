@@ -38,6 +38,7 @@ function App() {
   
   const [formValue, setFormValue] =  useState('')
   const [sending, setSending] = useState(false)
+
   const messagesEndRef = useRef()
 
   const colRef = collection(db,'messages')
@@ -67,10 +68,15 @@ function App() {
 
   async function handleClearChat(e){
     e.preventDefault()
+
+
     const querySnapshot = await getDocs(colRef);
     querySnapshot.forEach((document) => {
       handleDeleteDoc(document.id)
     })
+
+    
+
   }
 
   return (
@@ -115,7 +121,11 @@ function App() {
               }
             }}
           />
-          <button className='chat-form__button' onClick={e=>handleSendMessage(e)} disabled={formValue==='' || user === null}>
+          <button 
+            className='chat-form__button' 
+            onClick={e=>handleSendMessage(e)} 
+            disabled={formValue==='' || user === null}
+          >
             <BiSend size="3.5vh"/>
           </button>
         </div>
