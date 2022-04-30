@@ -1,5 +1,5 @@
-.sign-out{
-    background-color: #db4437;
+.clear-chat{
+    background-color:rgb(15, 157, 88);
     border: none;
     color: white;
     padding: 10px 20px;
@@ -9,5 +9,5 @@
     cursor: pointer;
     font-size: 1.25rem;
     border-radius: 20px;
+    margin-right: 20px;
 }
-

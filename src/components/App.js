@@ -1,8 +1,7 @@
 import {initializeApp} from 'firebase/app'
-import { getFirestore, collection, addDoc,
-  query, orderBy,limitToLast, serverTimestamp } from 'firebase/firestore'
-import { getAuth,GoogleAuthProvider
-      } from 'firebase/auth'
+import { getFirestore, collection, addDoc, doc, deleteDoc, query, orderBy, getDocs,
+        limitToLast, serverTimestamp} from 'firebase/firestore'
+import { getAuth,GoogleAuthProvider} from 'firebase/auth'
 
 import { useAuthState} from 'react-firebase-hooks/auth';
 import {useCollection } from 'react-firebase-hooks/firestore';
@@ -10,7 +9,7 @@ import { useState, useRef } from 'react';
 import '../css/app.css'
 import SignIn from './SignIn'
 import SignOut from './SignOut'
-
+import ClearChat from './ClearChat';
 import ChatMessage from './ChatMessage'
 import {BiSend} from 'react-icons/bi'
 
@@ -43,6 +42,7 @@ function App() {
 
   const colRef = collection(db,'messages')
   const q = query(colRef, orderBy('timestamp','asc'), limitToLast(20))
+
   const [value] = useCollection(q)
 
   async function handleSendMessage(e){
@@ -59,7 +59,19 @@ function App() {
         setSending(false)
         setFormValue('')
     }
-}
+  }
+
+  async function handleDeleteDoc(id){
+    await deleteDoc(doc(db, "messages",id))
+  }
+
+  async function handleClearChat(e){
+    e.preventDefault()
+    const querySnapshot = await getDocs(colRef);
+    querySnapshot.forEach((document) => {
+      handleDeleteDoc(document.id)
+    })
+  }
 
   return (
     <div className='app'>
@@ -72,7 +84,16 @@ function App() {
           <p className='title green'>t</p>
           <p className='title grey title-chat'>Chat</p>
         </div>
-        <SignOut auth={auth} />
+        { user && 
+          <div className='app__header-button-container'>
+            <ClearChat 
+              handleClearChat={handleClearChat}
+              sending={sending}
+            />
+            <SignOut auth={auth} />
+          </div>
+        }
+        
       </header>
       <section>
       <main>

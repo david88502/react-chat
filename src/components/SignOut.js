@@ -6,7 +6,7 @@ export default function SignOut({auth}) {
     signOut(auth)
 
   }
-  return auth.currentUser && (
+  return (
       <button className="sign-out" onClick={() => handleSignOut()}>Sign Out</button>
-    )
+  )
 }

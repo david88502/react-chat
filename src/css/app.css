@@ -5,6 +5,7 @@
 @import 'sign-out.css';
 @import 'font.css';
 @import 'color.css';
+@import 'clear-chat.css';
 
 *, *::before, *::after{
   font-family: Gotham Rounded, sans-serif;

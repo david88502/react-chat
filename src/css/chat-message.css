@@ -24,7 +24,8 @@ color: white;
 background: rgb(66,133,244);
 align-self: flex-end;
 }
+
 .received p {
-background: #e5e5ea;
+background: rgb(220,220,220);
 color: black;
 }
