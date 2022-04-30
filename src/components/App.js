@@ -2,17 +2,16 @@ import {initializeApp} from 'firebase/app'
 import { getFirestore, collection, addDoc, doc, deleteDoc, query, orderBy, getDocs,
         limitToLast, serverTimestamp} from 'firebase/firestore'
 import { getAuth,GoogleAuthProvider} from 'firebase/auth'
-
 import { useAuthState} from 'react-firebase-hooks/auth';
 import {useCollection } from 'react-firebase-hooks/firestore';
 import { useState, useRef } from 'react';
-import '../css/app.css'
+import Helmet from 'react-helmet';
 import SignIn from './SignIn'
 import SignOut from './SignOut'
 import ClearChat from './ClearChat';
 import ChatMessage from './ChatMessage'
 import {BiSend} from 'react-icons/bi'
-
+import '../css/app.css'
 
 const firebaseConfig = {
   apiKey: "AIzaSyAd32TuYwHsTKARaUCBxrgU_PhiyZeZXhk",
@@ -80,7 +79,17 @@ function App() {
   }
 
   return (
+
     <div className='app'>
+        <Helmet>
+        <title>React Chat</title>
+        <link
+          rel="icon"
+          type="image/png"
+          href={require('../assets/favicon.ico')}
+          sizes="16x16"
+        />
+        </Helmet>
       <header>
         <div className='app__title-container'>
           <p className='title blue'>R</p>
