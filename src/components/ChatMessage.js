@@ -6,9 +6,9 @@ export default function ChatMessage(props) {
 
     const messageClass = uid === auth.currentUser.uid? 'sent': 'received'
     return (
-        <div className={`chat-message ${messageClass}`}>
-            <img src={photoURL} alt=""/>
-            <p>{text}</p>
+        <div className={`msg-container ${messageClass}`}>
+            <img className="profile-pic" src={photoURL} alt=""/>
+            <p className='msg'>{text}</p>
         </div>
     )
 }

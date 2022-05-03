@@ -7,6 +7,6 @@ export default function SignOut({auth}) {
 
   }
   return (
-      <button className="sign-out" onClick={() => handleSignOut()}>Sign Out</button>
+      <button className="btn btn-sign-out" onClick={() => handleSignOut()}>Sign Out</button>
   )
 }

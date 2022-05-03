@@ -9,9 +9,6 @@ export default function SignIn({auth, provider}) {
 
     }
     return (
-        <div className='sign-in'>
-            <button className='sign-in__button' onClick={()=>handleSignIn()}>Sign in with Google</button>
-        </div>
-     
+        <button className='btn btn-sign-in' onClick={()=>handleSignIn()}>Sign in with Google</button>
     )
 }

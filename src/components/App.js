@@ -41,7 +41,7 @@ function App() {
   const messagesEndRef = useRef()
 
   const colRef = collection(db,'messages')
-  const q = query(colRef, orderBy('timestamp','asc'), limitToLast(20))
+  const q = query(colRef, orderBy('timestamp','asc'), limitToLast(25))
 
   const [value] = useCollection(q)
 
@@ -55,7 +55,7 @@ function App() {
             uid: user.uid, 
             photoURL: user.photoURL,
         })
-        messagesEndRef.current.scrollIntoView()
+        messagesEndRef.current.scrollIntoView({behavior:'smooth'})
         setSending(false)
         setFormValue('')
     }
@@ -82,25 +82,26 @@ function App() {
 
     <div className='app'>
         <Helmet>
-        <title>React Chat</title>
-        <link
-          rel="icon"
-          type="image/png"
-          href={require('../assets/favicon.ico')}
-          sizes="16x16"
-        />
+          <title>React Chat</title>
+          <link
+            rel="icon"
+            type="image/png"
+            href={require('../assets/favicon.ico')}
+            sizes="16x16"
+          />
         </Helmet>
-      <header>
-        <div className='app__title-container'>
+
+      <div className='header'> 
+        <div className='title-container'>
           <p className='title blue'>R</p>
           <p className='title red'>e</p>
           <p className='title yellow'>a</p>
           <p className='title blue'>c</p>
           <p className='title green'>t</p>
-          <p className='title grey title-chat'>Chat</p>
+          <p className='title grey title-word'>Chat</p>
         </div>
         { user && 
-          <div className='app__header-button-container'>
+          <div className='btn-container'>
             <ClearChat 
               handleClearChat={handleClearChat}
               sending={sending}
@@ -108,21 +109,24 @@ function App() {
             <SignOut auth={auth} />
           </div>
         }
-        
-      </header>
-      <section>
-      <main>
-        {user? value && value.docs.map(doc => <ChatMessage key={doc.id} {...doc.data()} auth={auth}/>)
+      </div>
+      <div className='body'>
+        {user? 
+          value ? 
+            value.docs.map(doc => <ChatMessage key={doc.id} {...doc.data()} auth={auth}/>)
+          : 
+            <div className='loading-text'>Loading . . . . . .</div>
         : 
         <SignIn auth={auth} provider={provider}/>
         }
         <span ref={messagesEndRef}></span>
-      </main>
+      </div>
  
-      <div className='chat-form' >
+      <div className='footer' >
           <input 
-            className='chat-form__input' 
+            className='input' 
             value={sending? 'Sending ......':formValue} 
+            disabled={sending}
             onChange={e=>setFormValue(e.target.value)}
             onKeyPress={(e) => {
               if (e.key === "Enter") {
@@ -131,15 +135,17 @@ function App() {
             }}
           />
           <button 
-            className='chat-form__button' 
+            className='submit-btn' 
             onClick={e=>handleSendMessage(e)} 
             disabled={formValue==='' || user === null}
           >
-            <BiSend size="3.5vh"/>
+            <BiSend size="2.5rem"/>
           </button>
         </div>
-        </section>
+        
+
     </div>
+    
   )
 }
 

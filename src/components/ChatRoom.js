@@ -16,14 +16,14 @@ export default function ChatRoom(props) {
             <span ref={messagesEndRef}/>
             </main>
             </section>
-            <div className='chat-room__form' >
+            <div>
                 <input 
-                    className='chat-room__input' 
-                    value={sending? 'Sending ......':formValue} 
+                    value={sending? '':formValue} 
                     onChange={e=>setFormValue(e.target.value)}
+                    disabled={sending}
                 />
-                <button className='chat-room__form-button' onClick={e=>handleSendMessage(e)} disabled={formValue===''}>
-                    <BiSend size="3.5vh"/>
+                <button onClick={e=>handleSendMessage(e)} disabled={formValue===''}>
+                    <BiSend size="1em"/>
                 </button>
             </div>
         </>

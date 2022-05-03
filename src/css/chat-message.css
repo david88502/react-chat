@@ -1,31 +1,47 @@
-p {
-    max-width: 500px;
-    margin-bottom: 12px;
-    line-height: 24px;
-    padding: 10px 20px;
-    border-radius: 25px;
-    position: relative;
-    color: white;
-    text-align: center;
-  }
-  
-.chat-message {
-display: flex;
-align-items: center;
+.msg-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1rem;
 }
-  
-  
+
+.msg {
+  padding: .9em 1.4em;
+  max-width: 70%;
+  word-wrap: break-word;
+  border-radius: 2rem;
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
 .sent {
 flex-direction: row-reverse;
 }
 
-.sent p {
-color: white;
-background: rgb(66,133,244);
-align-self: flex-end;
+.sent .msg {
+  color: white;
+  background: rgb(66,133,244);
+  align-self: flex-end;
 }
 
-.received p {
-background: rgb(220,220,220);
-color: black;
+.received .msg {
+  background: rgb(220,220,220);
+  color: black;
 }
+
+.profile-pic{
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+}
+
+.sent .profile-pic{
+  margin-left: 1em;
+}
+
+.received .profile-pic{
+  margin-right: 1em;
+}
+
