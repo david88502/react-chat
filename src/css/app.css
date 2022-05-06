@@ -147,13 +147,6 @@ body{
 
 
 
-@media (max-width:1000px) {
-  .app{
-    width: 100vw;
-    min-width: 100vw;
-  }
-}
-
 @media (max-width:300px){
   .btn-container{
     display: flex;
@@ -165,21 +158,21 @@ body{
     margin-bottom: .8em;
     margin-right: 0;
   }
+
 }
 
 @media (max-width:800px) {
   .header{
     padding: 1rem 1rem;
   }
-  .btn{
-    font-size: .8rem;
-  }
   .input{
     font-size: 1rem;
     padding: .5em 1em;
     margin-right: 1rem;
   }
-
+  .btn{
+    font-size: .8rem;
+  }
   .footer{
     padding: 1rem 0 1rem 0;
   }
